@@ -47,7 +47,7 @@ export const WRITEUPS = [
 export const EXP = [
   { role: "Security Engineer", org: "PT Sydecode Indonesia", time: "Oktober 2026 - Sekarang", now: true, pts: ["Proses onboarding"] },
   {
-    role: "Cyber Security Engineer", org: "PT Teknologi Server Indonesia (XCODE)", time: "10 Juli 2026 - 30 Agustus 2026", pts: ["Melakukan pengujian penetrasi pada website forum komunitas XCODE", "Merancang dan mengonfigurasi SIEM Wazuh dengan integrasi Virustotal, Shodan, realtime Telegram alert, dan Wazuh AI Copilot berbasis local LLM.", "Melakukan simulasi pentesting terhadap endpoint input user untuk menguji efektivitas SIEM Wazuh yang dirancang"]
+    role: "Cyber Security Engineer (Intern)", org: "PT Teknologi Server Indonesia (XCODE)", time: "10 Juli 2026 - 30 Agustus 2026", pts: ["Melakukan pengujian penetrasi pada website forum komunitas XCODE", "Merancang dan mengonfigurasi SIEM Wazuh dengan integrasi Virustotal, Shodan, realtime Telegram alert, dan Wazuh AI Copilot berbasis local LLM.", "Melakukan simulasi pentesting terhadap endpoint input user untuk menguji efektivitas SIEM Wazuh yang dirancang"]
   },
   { role: "Community Representative", org: "Anon Cyber Team", time: "2025 - sekarang", pts: ["Menjadi anggota dari komunitas Keamanan Siber Anon Cyber Team (ACT) sebagai bentuk pengabdian sosial"] },
   { role: "Mahasiswa Sistem Informasi", org: "UPN Veteran Yogyakarta", time: "2024 - sekarang", pts: ["Semester 5, fokus pada keamanan informasi dan pengembangan sistem."] },
