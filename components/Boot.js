@@ -2,12 +2,14 @@
 import { useEffect, useState } from "react";
 
 const LINES = [
-  ["ok", "[ OK ] loading kernel modules"],
-  ["ok", "[ OK ] mounting /dev/portfolio"],
-  ["ok", "[ OK ] starting glitch.service"],
-  ["ok", "[ OK ] establishing secure channel"],
-  ["warn", "[WARN] unauthorized curiosity detected"],
-  ["ok", "[ OK ] access granted. welcome."],
+  ["sys", "BackTrack 5 R3 (Revolution) Kernel 3.2.6-bt5 #1 SMP PREEMPT x86_64"],
+  ["sys", "Initializing Offensive Security Distribution Environment..."],
+  ["ok", "[  OK  ] Initializing hardware crypto modules and entropy engine"],
+  ["ok", "[  OK  ] Mounting /dev/portfolio on /mnt/kartiko-workspace (ext4)"],
+  ["ok", "[  OK  ] Loading network-recon & penetration testing toolchains"],
+  ["warn", "[ WARN ] Promiscuous packet filtering detected: stealth active"],
+  ["ok", "[  OK  ] Security clearance verified: KARTIKO DAMAR JATI"],
+  ["ok", "[  OK  ] Starting tty1 interactive shell: root@backtrack:~#"],
 ];
 
 export default function Boot() {
@@ -19,8 +21,8 @@ export default function Boot() {
     try { seen = sessionStorage.getItem("booted") === "1"; } catch (e) {}
     if (seen || window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setShow(false); return; }
     const done = () => { try { sessionStorage.setItem("booted", "1"); } catch (e) {} setShow(false); };
-    const id = setInterval(() => setN((x) => x + 1), 260);
-    const key = (e) => { if (e.key === "Escape" || e.key === "Enter") done(); };
+    const id = setInterval(() => setN((x) => x + 1), 220);
+    const key = (e) => { if (e.key === "Escape" || e.key === "Enter" || e.key === " ") done(); };
     window.addEventListener("keydown", key);
     window.__bootDone = done;
     return () => { clearInterval(id); window.removeEventListener("keydown", key); };
@@ -33,8 +35,21 @@ export default function Boot() {
   if (!show) return null;
   return (
     <div className="boot" onClick={() => window.__bootDone && window.__bootDone()} role="status">
-      {LINES.slice(0, n).map(([k, t]) => <p key={t} className={k}>{t}</p>)}
-      <small>Klik atau tekan Enter untuk melewati</small>
+      <div className="boot-terminal">
+        <div className="boot-header">
+          <span className="boot-distro">BACKTRACK LINUX 5.3 // OFFENSIVE SECURITY</span>
+          <span className="boot-sub">[ TTY1 INITIALIZATION ]</span>
+        </div>
+        <div className="boot-lines">
+          {LINES.slice(0, n).map(([k, t], idx) => (
+            <p key={idx} className={`boot-line ${k}`}>{t}</p>
+          ))}
+        </div>
+        <div className="boot-footer">
+          <span className="boot-prompt">[ Tekan ENTER atau KLIK di mana saja untuk melewati ]</span>
+        </div>
+      </div>
     </div>
   );
 }
+
