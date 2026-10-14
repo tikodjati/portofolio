@@ -15,7 +15,7 @@ export default function Home() {
     name: ME.name,
     bio: ME.bio,
     skills: SKILLS.flatMap((g) => (g.items ? g.items.map((i) => i.n) : g.tags)),
-    certs: CERTS.map((c) => `${c.name} (${c.org}, ${c.year})`),
+    certs: CERTS.map((c) => `${c.name} [ID: ${c.credentialId || '-'}] (${c.org}, ${c.year})`),
     projects: PROJECTS.map((p) => `${p.file}: ${p.name}`),
     writeups: WRITEUPS.map((w) => `${w.title} [${w.cat}]`),
     contact: CONTACT,
@@ -135,6 +135,12 @@ export default function Home() {
                 <div className="meta cert-org">
                   <span className="org-label">ISSUER:</span> {c.org}
                 </div>
+                {c.credentialId && (
+                  <div className="cert-id-badge">
+                    <span className="cert-id-label">CREDENTIAL ID:</span>
+                    <code className="cert-id-code">{c.credentialId}</code>
+                  </div>
+                )}
               </div>
             ))}
           </div>

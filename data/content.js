@@ -19,7 +19,7 @@ export const STATS = [
   { v: 5, l: "Semester ditempuh" },
   { v: 5, l: "CTF diikuti", plus: true },
   { v: 3, l: "Writeup ditulis", plus: true },
-  { v: 2, l: "Sertifikasi" },
+  { v: 3, l: "Sertifikasi" },
 ];
 
 export const SKILLS = [
@@ -30,9 +30,26 @@ export const SKILLS = [
 ];
 
 export const CERTS = [
-  { name: "Certified Junior Web Application Penetration Tester (CJWAPT)", org: "Sturtle Security Pvt Ltd", year: "Maret 2026" },
-  { name: "Google Cybersecurity Certified Professional (GCPC)", org: "Google", year: "Juli 2026" },
+  {
+    name: "Certified Junior Web Application Penetration Tester (CJWAPT)",
+    org: "Sturtle Security Pvt Ltd",
+    year: "Maret 2026",
+    credentialId: "ECR-02876",
+  },
+  {
+    name: "Google Cybersecurity Certified Professional (GCPC)",
+    org: "Google",
+    year: "Juli 2026",
+    credentialId: "5XZROR5K2I2C",
+  },
+  {
+    name: "Certified Cyber Security Analyst (C3SA)",
+    org: "Cyberwarfare Labs",
+    year: "Oktober 2026",
+    credentialId: "6ace34ed03911c6e37d60bd5",
+  },
 ];
+
 
 export const PROJECTS = [
   { file: "SMB_Enumeration_Tools.py", name: "SMB Enumeration Framework", desc: "Tool Python untuk memindai dan mengenumerasi protokol SMB", tech: ["Python", "Nmap"], link: "https://github.com/tikodjati/Penetration_Testing_Tools-By_Kierrr/tree/main/SMB_Enum_Tools" },
