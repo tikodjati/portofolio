@@ -48,6 +48,12 @@ export const CERTS = [
     year: "Oktober 2026",
     credentialId: "6ace34ed03911c6e37d60bd5",
   },
+  {
+    name: "Certified Cybersecurity Educator Professional (CCEP)",
+    org: "Red Team Leaders",
+    year: "Oktober 2026",
+    credentialId: "998a12bdb7c36fe0",
+  },
 ];
 
 
