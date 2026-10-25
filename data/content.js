@@ -2,7 +2,7 @@
 export const ME = {
   name: "Kartiko Damar Jati",
   location: "Yogyakarta, ID",
-  roles: ["Security Engineer", "Penetration Tester", "Mahasiswa Sistem Informasi", "CTF Player"],
+  roles: ["Cybersecurity Engineer", "Penetration Tester", "Mahasiswa Sistem Informasi", "CTF Player"],
   bio: "Seorang mahasiswa S1 Program Studi Sistem Informasi di Universitas Pembangunan Nasional 'Veteran' Yogyakarta (UPNVYK) dengan fokus pada bidang Keamanan Siber.",
 };
 
