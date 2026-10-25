@@ -8,7 +8,7 @@ export const ME = {
 
 export const PROFILE = [
   ["Nama", "Kartiko Damar Jati"],
-  ["Peran", "Security Engineer / Penetration Tester"],
+  ["Peran", "Cybersecurity Engineer / Penetration Tester"],
   ["Kampus", "UPN Veteran Yogyakarta"],
   ["Prodi", "Sistem Informasi, Semester 5"],
   ["Fokus", "Web & Network Pentesting"],
@@ -68,9 +68,9 @@ export const WRITEUPS = [
 ];
 
 export const EXP = [
-  { role: "Security Engineer", org: "PT Sydecode Indonesia (Kontrak)", time: "Oktober 2026 - Sekarang", now: true, pts: ["Merancang solusi firewall cerdas dengan deteksi ancaman berbasis AI dan pemantauan waktu nyata (real-time)."] },
+  { role: "Cybersecurity Engineer", org: "PT Sydecode Indonesia (Kontrak)", time: "Oktober 2026 - Sekarang", now: true, pts: ["Merancang solusi firewall cerdas dengan deteksi ancaman berbasis AI dan pemantauan waktu nyata (real-time)."] },
   {
-    role: "Cyber Security Engineer (Intern)", org: "PT Teknologi Server Indonesia (XCODE)", time: "10 Juli 2026 - 30 Agustus 2026", pts: ["Melakukan pengujian penetrasi pada website forum komunitas XCODE", "Merancang dan mengonfigurasi SIEM Wazuh dengan integrasi Virustotal, Shodan, realtime Telegram alert, dan Wazuh AI Copilot berbasis local LLM.", "Melakukan simulasi pentesting terhadap endpoint input user untuk menguji efektivitas SIEM Wazuh yang dirancang"]
+    role: "Cybersecurity Engineer (Intern)", org: "PT Teknologi Server Indonesia (XCODE)", time: "10 Juli 2026 - 30 Agustus 2026", pts: ["Melakukan pengujian penetrasi pada website forum komunitas XCODE", "Merancang dan mengonfigurasi SIEM Wazuh dengan integrasi Virustotal, Shodan, realtime Telegram alert, dan Wazuh AI Copilot berbasis local LLM.", "Melakukan simulasi pentesting terhadap endpoint input user untuk menguji efektivitas SIEM Wazuh yang dirancang"]
   },
   { role: "Community Representative", org: "Anon Cyber Team", time: "2025 - sekarang", pts: ["Menjadi anggota dari komunitas Keamanan Siber Anon Cyber Team (ACT) sebagai bentuk pengabdian sosial"] },
   { role: "Staff Divisi Kajian Strategis", org: "Departmen Kemahasiswaan Badan Eksekutif Mahasiswa (BEM FTI) UPN 'Veteran' Yogyakarta", time: "Juni 2025 - Januari 2026", now: false, pts: ["Melakukan penelitian mengenai isu-isu strategis dalam teknologi industri di tingkat nasional dan internasional.", "Mempublikasikan temuan penelitian dan studi melalui media sosial"] },
