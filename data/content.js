@@ -8,7 +8,7 @@ export const ME = {
 
 export const PROFILE = [
   ["Nama", "Kartiko Damar Jati"],
-  ["Peran", "Cybersecurity Engineer / Penetration Tester"],
+  ["Peran", "Cybersecurity Engineer"],
   ["Kampus", "UPN Veteran Yogyakarta"],
   ["Prodi", "Sistem Informasi, Semester 5"],
   ["Fokus", "Web & Network Pentesting"],
@@ -25,7 +25,7 @@ export const STATS = [
 export const SKILLS = [
   { level: "KUAT", items: [{ n: "Web Pentesting (OWASP Top 10)", v: 80 }, { n: "Burp Suite", v: 80 }, { n: "Nmap & Recon", v: 95 }] },
   { level: "MENENGAH", items: [{ n: "Linux & Bash", v: 75 }, { n: "Python Scripting", v: 80 }, { n: "Log Analysis", v: 85 }, { n: "Wazuh / SIEM", v: 90 }] },
-  { level: "SEDANG DIPELAJARI", tags: ["Active Directory", "Cloud Security", "Reverse Engineering", "Binary Exploitation"] },
+  { level: "SEDANG DIPELAJARI", tags: ["Cloud Security"] },
   { level: "SOFT SKILLS", tags: ["Berpikir kritis", "Dokumentasi", "Kolaborasi tim", "Belajar mandiri dan berkelanjutan", "Konsisten"] },
 ];
 
