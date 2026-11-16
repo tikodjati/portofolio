@@ -68,7 +68,7 @@ export const WRITEUPS = [
 ];
 
 export const EXP = [
-  { role: "Cybersecurity Solutions Engineer", org: "PT Sydecode Indonesia (Freelance)", time: "Oktober 2026 - November", now: false, pts: ["Merancang dan mendesain solusi keamanan jaringan jarak jauh (Amerika Serikat) melalui infrastruktur Virtual Private Network (VPN).", "Melakukan konfigurasi jaringan jarak jauh (VPN) yang tersegmentasi dan menerapkan konsep zero-trust.", "Melakukan simulasi penetrasi jaringan jarak jauh untuk memastikan konfigurasi jaringan jarak jauh dapat aman secara menyeluruh."] },
+  { role: "Cybersecurity Solutions Engineer", org: "PT Sydecode Indonesia (Freelance)", time: "06 Oktober 2026 - 14 November 2026", now: false, pts: ["Merancang dan mendesain solusi keamanan jaringan jarak jauh (Amerika Serikat) melalui infrastruktur Virtual Private Network (VPN).", "Melakukan konfigurasi jaringan jarak jauh (VPN) yang tersegmentasi dan menerapkan konsep zero-trust.", "Melakukan simulasi penetrasi jaringan jarak jauh untuk memastikan konfigurasi jaringan jarak jauh dapat aman secara menyeluruh."] },
   {
     role: "Cybersecurity Engineer (Intern)", org: "PT Teknologi Server Indonesia (XCODE)", time: "10 Juli 2026 - 30 Agustus 2026", pts: ["Melakukan pengujian penetrasi pada website forum komunitas XCODE", "Merancang dan mengonfigurasi SIEM Wazuh dengan integrasi Virustotal, Shodan, realtime Telegram alert, dan Wazuh AI Copilot berbasis local LLM.", "Melakukan simulasi pentesting terhadap endpoint input user untuk menguji efektivitas SIEM Wazuh yang dirancang"]
   },
