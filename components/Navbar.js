@@ -19,7 +19,6 @@ export default function Navbar() {
     { href: "/#projects", label: t.nav.projects, active: false },
     { href: "/#experience", label: t.nav.experience, active: false },
     { href: "/learn", label: t.nav.learn, active: isLearn },
-    { href: "/#terminal", label: t.nav.terminal, active: false },
     { href: "/#contact", label: t.nav.contact, active: false },
   ];
 

@@ -797,26 +797,56 @@ input:focus-visible,
   margin-bottom: 28px;
 }
 
+.learn-table {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.learn-table-head {
+  display: grid;
+  grid-template-columns: minmax(175px, 1.1fr) minmax(0, 1.6fr) 184px;
+  gap: 20px;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
 .learn-track-rows {
-  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
 }
 
 .learn-track-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr) auto;
-  gap: 16px 24px;
+  grid-template-columns: minmax(175px, 1.1fr) minmax(0, 1.6fr) 184px;
+  gap: 14px 20px;
   align-items: center;
-  padding: 20px 8px;
-  border-bottom: 1px solid var(--border);
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border-subtle);
   transition: background-color 0.18s ease;
+}
+
+.learn-track-row:last-child {
+  border-bottom: 0;
 }
 
 .learn-track-row:hover {
   background: var(--surface-hover);
 }
 
+.track-name-col {
+  min-width: 0;
+}
+
 .track-row-title {
-  font-size: 16.5px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--text);
 }
@@ -829,8 +859,48 @@ input:focus-visible,
 }
 
 .track-row-summary {
-  font-size: 14.5px;
+  font-size: 14px;
   color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.track-metric-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.track-metric-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: 100%;
+}
+
+.track-metric-val {
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.track-mini-bar {
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--track-bg);
+  overflow: hidden;
+}
+
+.track-mini-fill {
+  height: 100%;
+  background: var(--track-fill);
+  border-radius: 999px;
 }
 
 .status-pill {
@@ -995,117 +1065,6 @@ input:focus-visible,
   color: var(--text-secondary);
   font-size: 14.5px;
   line-height: 1.65;
-}
-
-/* =========================================================
-   Minimal Interactive Terminal Shell
-   ========================================================= */
-.shell-box {
-  margin-top: 24px;
-  border: 1px solid var(--border-strong);
-  border-radius: 8px;
-  background: var(--surface);
-  overflow: hidden;
-}
-
-.shell-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface-muted);
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-
-.shell-quick-cmds {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.shell-chip-btn {
-  min-height: 44px;
-  min-width: 44px;
-  padding: 6px 12px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background: var(--surface);
-  color: var(--text-secondary);
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
-}
-
-.shell-chip-btn:hover {
-  border-color: var(--text);
-  color: var(--text);
-}
-
-.shell-output {
-  height: 240px;
-  overflow-y: auto;
-  padding: 16px;
-  font-family: var(--font-mono), monospace;
-  font-size: 13px;
-  line-height: 1.6;
-  background: var(--surface);
-}
-
-.shell-entry {
-  margin-bottom: 12px;
-}
-
-.shell-cmd-line {
-  color: var(--text);
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-.shell-pre {
-  margin: 0;
-  white-space: pre-wrap;
-  word-break: break-word;
-  color: var(--text-secondary);
-  font: inherit;
-}
-
-.shell-form {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border-top: 1px solid var(--border);
-  background: var(--bg-subtle);
-}
-
-.shell-prompt {
-  font-family: var(--font-mono), monospace;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text);
-  white-space: nowrap;
-}
-
-.shell-input {
-  flex: 1;
-  min-width: 0;
-  min-height: 44px;
-  border: 0;
-  background: transparent;
-  color: var(--text);
-  font-family: var(--font-mono), monospace;
-  font-size: 13.5px;
-}
-
-.shell-input:focus-visible {
-  outline: none;
-}
-
-.shell-form:focus-within {
-  box-shadow: inset 0 0 0 2px var(--text);
 }
 
 /* =========================================================
@@ -1709,9 +1668,22 @@ input:focus-visible,
     gap: 32px;
   }
 
+  .learn-table-head {
+    display: none;
+  }
+
   .learn-track-row {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .track-metric-col {
+    align-items: flex-start;
+  }
+
+  .track-metric-top {
+    justify-content: space-between;
   }
 
   .work-row {

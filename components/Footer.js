@@ -1,19 +1,13 @@
 "use client";
 import Link from "next/link";
-import { CONTACT, ME, UI_COPY } from "../data/content";
-import { useSite } from "./SiteProvider";
+import { CONTACT, ME } from "../data/content";
 
 export default function Footer() {
-  const { lang } = useSite();
-  const t = UI_COPY[lang];
-
   return (
     <footer className="site-footer">
       <div className="footer-inner">
         <div>
-          <p>
-            © 2026 {ME.name}. {t.footer.builtWith}
-          </p>
+          <p>© 2026 {ME.name}</p>
         </div>
         <div className="footer-links">
           <Link href="/learn" className="editorial-link">

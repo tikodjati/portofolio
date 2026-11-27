@@ -8,10 +8,10 @@ import {
   LEARN_COPY,
   RUST_MODULES,
   SOLANA_ROADMAP_PHASES,
-  TRACK_OVERVIEW,
   WEB3_PREREQUISITES,
 } from "../../data/learn";
 import { useSite } from "../../components/SiteProvider";
+import LearnProgressTable from "../../components/LearnProgressTable";
 
 export default function LearnPage() {
   const { lang } = useSite();
@@ -233,30 +233,12 @@ export default function LearnPage() {
             <h1 className="notebook-title">{lt.pageTitle}</h1>
             <p className="notebook-intro">{lt.pageIntro}</p>
 
-            <div className="learn-track-rows" style={{ marginTop: "24px" }}>
-              {TRACK_OVERVIEW.map((tr) => (
-                <a
-                  key={tr.id}
-                  href={tr.anchor}
-                  className="learn-track-row"
-                  onClick={() => setActiveTab("all")}
-                >
-                  <div>
-                    <div className="track-row-title">{tr.name}</div>
-                    <div className="track-row-updated">{tr.updated}</div>
-                  </div>
-                  <p className="track-row-summary">{tr.summary[lang]}</p>
-                  <div>
-                    <span
-                      className={`status-pill ${
-                        tr.status === "in_progress" ? "is-active" : ""
-                      }`}
-                    >
-                      {tr.metric}
-                    </span>
-                  </div>
-                </a>
-              ))}
+            <div style={{ marginTop: "24px" }}>
+              <LearnProgressTable
+                lang={lang}
+                useAnchorsOnly
+                onRowClick={() => setActiveTab("all")}
+              />
             </div>
 
             <div role="tablist" aria-label={lt.tabsAria} className="tablist">

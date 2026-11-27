@@ -14,7 +14,6 @@ export const UI_COPY = {
       projects: "Karya",
       experience: "Pengalaman",
       learn: "/learn",
-      terminal: "Shell",
       contact: "Kontak",
       search: "Cari",
       menuOpen: "Menu",
@@ -28,7 +27,6 @@ export const UI_COPY = {
       statusLabel: "Tersedia untuk kolaborasi riset & keamanan",
       ctaLearn: "Buka catatan /learn",
       ctaProjects: "Lihat proyek",
-      ctaTerminal: "Buka shell",
       avatarAlt: "Foto profil Kartiko Damar Jati",
       avatarCaption: "Yogyakarta, Indonesia",
     },
@@ -66,16 +64,6 @@ export const UI_COPY = {
         "Peran teknis, magang keamanan siber, dan kontribusi organisasi yang berfokus pada pengujian sistem serta penguatan infrastruktur.",
       currentBadge: "Aktif",
     },
-    terminal: {
-      eyebrow: "Utilitas Interaktif",
-      heading: "Shell Catatan",
-      subtitle:
-        "Ketik perintah seperti help, learn, whoami, certs, projects, atau flag untuk menelusuri ringkasan sistem melalui CLI.",
-      placeholder: "ketik perintah (mis. help)...",
-      runLabel: "Jalankan",
-      welcome:
-        "Monochrome Portfolio Shell v2.0. Ketik 'help' untuk melihat daftar perintah.",
-    },
     contact: {
       eyebrow: "Kontak",
       heading: "Terhubung untuk diskusi teknis.",
@@ -87,7 +75,6 @@ export const UI_COPY = {
       linksLabel: "Tautan",
     },
     footer: {
-      builtWith: "Dibangun dengan Next.js. Palet monokrom hitam, putih, abu-abu.",
       rights: "Seluruh konten bersumber dari data nyata dan catatan repositori lokal.",
     },
     search: {
@@ -113,7 +100,6 @@ export const UI_COPY = {
       projects: "Projects",
       experience: "Work record",
       learn: "/learn",
-      terminal: "Shell",
       contact: "Contact",
       search: "Search",
       menuOpen: "Menu",
@@ -127,7 +113,6 @@ export const UI_COPY = {
       statusLabel: "Open to security research & engineering work",
       ctaLearn: "Open /learn notebook",
       ctaProjects: "Inspect projects",
-      ctaTerminal: "Open shell",
       avatarAlt: "Portrait of Kartiko Damar Jati",
       avatarCaption: "Yogyakarta, Indonesia",
     },
@@ -165,16 +150,6 @@ export const UI_COPY = {
         "Technical engagements, cybersecurity internships, and community work focused on infrastructure hardening and testing.",
       currentBadge: "Active",
     },
-    terminal: {
-      eyebrow: "Interactive Utility",
-      heading: "Notebook Shell",
-      subtitle:
-        "Type commands such as help, learn, whoami, certs, projects, or flag to query portfolio and /learn records directly.",
-      placeholder: "type a command (e.g. help)...",
-      runLabel: "Run",
-      welcome:
-        "Monochrome Portfolio Shell v2.0. Type 'help' to list available commands.",
-    },
     contact: {
       eyebrow: "Contact",
       heading: "When the work aligns.",
@@ -186,7 +161,6 @@ export const UI_COPY = {
       linksLabel: "Profiles",
     },
     footer: {
-      builtWith: "Built with Next.js in a strict black, white, and grey monochrome palette.",
       rights: "All entries reflect real credentials and local repository logs.",
     },
     search: {

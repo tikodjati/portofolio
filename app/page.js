@@ -12,15 +12,13 @@ import {
   TOOL_STRIP,
   UI_COPY,
 } from "../data/content";
-import { LEARN_COPY, TRACK_OVERVIEW } from "../data/learn";
 import { useSite } from "../components/SiteProvider";
 import Status from "../components/Status";
-import Terminal from "../components/Terminal";
+import LearnProgressTable from "../components/LearnProgressTable";
 
 export default function HomePage() {
   const { lang } = useSite();
   const t = UI_COPY[lang];
-  const lt = LEARN_COPY[lang];
 
   return (
     <main id="main-content" tabIndex={-1}>
@@ -39,9 +37,6 @@ export default function HomePage() {
                 </Link>
                 <a href="#projects" className="btn-secondary">
                   {t.hero.ctaProjects}
-                </a>
-                <a href="#terminal" className="btn-secondary">
-                  {t.hero.ctaTerminal}
                 </a>
               </div>
 
@@ -175,28 +170,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="learn-track-rows">
-            {TRACK_OVERVIEW.map((tr) => (
-              <Link key={tr.id} href={`/learn${tr.anchor}`} className="learn-track-row">
-                <div>
-                  <div className="track-row-title">{tr.name}</div>
-                  <div className="track-row-updated">
-                    {t.learnPreview.updatedLabel}: {tr.updated}
-                  </div>
-                </div>
-                <p className="track-row-summary">{tr.summary[lang]}</p>
-                <div>
-                  <span
-                    className={`status-pill ${
-                      tr.status === "in_progress" ? "is-active" : ""
-                    }`}
-                  >
-                    {tr.metric} · {lt.statusLabels[tr.status]}
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <LearnProgressTable lang={lang} />
         </div>
       </section>
 
@@ -279,16 +253,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="terminal" className="band-subtle">
-        <div className="container">
-          <p className="section-eyebrow">{t.terminal.eyebrow}</p>
-          <h2 className="section-heading">{t.terminal.heading}</h2>
-          <p className="section-lead">{t.terminal.subtitle}</p>
-          <Terminal />
-        </div>
-      </section>
-
-      <section id="contact" className="band-plain">
+      <section id="contact" className="band-subtle">
         <div className="container">
           <div className="contact-layout">
             <p className="section-eyebrow">{t.contact.eyebrow}</p>

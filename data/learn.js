@@ -51,6 +51,11 @@ export const LEARN_COPY = {
       "Jalur ini saat ini berada di 0% dan dijadwalkan untuk dilanjutkan setelah target CPTS dan Phase 1 Rust/Solana rampung. Daftar di bawah adalah ruang lingkup rencana studi.",
     filesLabel: "Berkas latihan terverifikasi",
     auditorFocusLabel: "Fokus auditor",
+    tableHeaders: {
+      track: "Jalur Belajar",
+      focus: "Fokus Materi",
+      progress: "Progres",
+    },
   },
   en: {
     pageTitle: "Learning Log & Progress /learn",
@@ -104,6 +109,11 @@ export const LEARN_COPY = {
       "Currently at 0% and queued to resume after current CPTS and Rust/Solana milestones. Items below represent the planned study scope.",
     filesLabel: "Verified exercise files",
     auditorFocusLabel: "Auditor focus",
+    tableHeaders: {
+      track: "Track",
+      focus: "Scope",
+      progress: "Progress",
+    },
   },
 };
 
@@ -113,8 +123,10 @@ export const TRACK_OVERVIEW = [
     anchor: "#track-solana",
     name: "Solana Smart Contract Security Audit",
     metric: "Phase 1: 5 Done, 3 In Progress / 24",
+    shortMetric: { id: "5/24 (+3 aktif)", en: "5/24 (+3 active)" },
+    pct: 21,
     status: "in_progress",
-    updated: "2026-11-26",
+    updated: { id: "Diperbarui 2026-11-26", en: "Updated 2026-11-26" },
     summary: {
       id: "Fokus aktif pada fondasi Rust (Rust By Example) dengan catatan kerentanan auditor Web3.",
       en: "Active focus on Rust fundamentals (Rust By Example) mapped to Web3 security audit pitfalls.",
@@ -125,8 +137,10 @@ export const TRACK_OVERVIEW = [
     anchor: "#track-cpts",
     name: "Hack The Box CPTS",
     metric: "50%",
+    shortMetric: { id: "50%", en: "50%" },
+    pct: 50,
     status: "in_progress",
-    updated: "Active track",
+    updated: { id: "Jalur aktif", en: "Active track" },
     summary: {
       id: "Jalur penetration testing ofensif (web, jaringan, Active Directory, dan pelaporan).",
       en: "Offensive penetration testing path covering web, network, Active Directory, and reporting.",
@@ -137,8 +151,10 @@ export const TRACK_OVERVIEW = [
     anchor: "#track-aws",
     name: "Certified AWS Red Team Specialist",
     metric: "0%",
+    shortMetric: { id: "0%", en: "0%" },
+    pct: 0,
     status: "planned",
-    updated: "Queued",
+    updated: { id: "Akan dilanjutkan", en: "Queued next" },
     summary: {
       id: "Jalur cloud red teaming AWS yang akan dilanjutkan setelah milestone CPTS dan Phase 1 Rust.",
       en: "AWS cloud red teaming track queued to continue after current CPTS and Rust milestones.",
