@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CERTS, EXP, PROJECTS, UI_COPY } from "../data/content";
-import { AWS_RED_TEAM_TRACK, CPTS_TRACK, RUST_MODULES, TRACK_OVERVIEW } from "../data/learn";
+import { AWS_RED_TEAM_TRACK, CPTS_TRACK, RUST_MODULES, SOLANA_ROADMAP_PHASES, TRACK_OVERVIEW, WEB3_PREREQUISITES } from "../data/learn";
 import { useSite } from "./SiteProvider";
 
 export default function SearchDialog() {
@@ -66,6 +66,28 @@ export default function SearchDialog() {
         keywords: `rust solana audit ${m.num} ${m.title} ${m.topics} ${m.files.join(" ")} ${
           m.auditorFocus ? m.auditorFocus[lang] : ""
         }`,
+      });
+    });
+
+    WEB3_PREREQUISITES.forEach((p, idx) => {
+      items.push({
+        id: `prereq-${idx}`,
+        group: t.search.groups.learn,
+        title: p.title,
+        desc: p.detail[lang],
+        href: "/learn#web3-prereqs",
+        keywords: `solana web3 prereq ${p.title} ${p.detail[lang]}`,
+      });
+    });
+
+    SOLANA_ROADMAP_PHASES.forEach((ph) => {
+      items.push({
+        id: `phase-${ph.phase}`,
+        group: t.search.groups.learn,
+        title: `${ph.phase}: ${ph.title}`,
+        desc: ph.items.join(" / "),
+        href: "/learn#solana-roadmap",
+        keywords: `solana roadmap ${ph.phase} ${ph.title} ${ph.items.join(" ")}`,
       });
     });
 

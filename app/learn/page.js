@@ -301,7 +301,7 @@ export default function LearnPage() {
                   </div>
                 </div>
 
-                <div style={{ marginBottom: "28px" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginBottom: "20px" }}>
                   <a
                     href={SITE.learnRepoUrl}
                     target="_blank"
@@ -310,7 +310,17 @@ export default function LearnPage() {
                   >
                     {lt.solanaRepoCta}
                   </a>
+                  <a
+                    href="https://github.com/Cyfrin/solana-course"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary"
+                  >
+                    {lt.solanaUpdraftCta}
+                  </a>
                 </div>
+
+                <div className="notice-box">{lt.solanaFastTrack}</div>
 
                 <div id="web3-prereqs" style={{ marginBottom: "32px" }}>
                   <h3 className="meta-heading">{lt.solanaPrereqTitle}</h3>

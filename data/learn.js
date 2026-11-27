@@ -40,9 +40,12 @@ export const LEARN_COPY = {
     cptsSyncNotice:
       "Status 50% dilaporkan langsung. Rincian catatan per modul lokal belum dipulihkan pasca-reset SSD sehingga hanya domain kurikulum resmi yang dicantumkan tanpa angka palsu per sub-topik.",
     solanaTitle: "Solana Smart Contract Security Audit",
-    solanaBadge: "Aktif: Phase 1 (5 Selesai, 3 Berjalan)",
+    solanaBadge: "Fokus Utama: Phase 1 (5 Selesai, 3 Berjalan)",
     solanaRepoCta: "Buka repo Rust-Smart-Contract-Security-Audit",
-    solanaPhasesTitle: "Peta Jalan 5 Fase",
+    solanaUpdraftCta: "Kurikulum Cyfrin Updraft (Solana)",
+    solanaFastTrack:
+      "Fast-Track Auditor: tuntaskan 06-08 serta modul kritis 14-18 & 22 (+ 3 prasyarat Web3), lalu langsung masuk Phase 2 (Native, Anchor, Pinocchio & Cyfrin Updraft Solana Course) bersama LiteSVM, Mollusk, Token-2022, dan Trident.",
+    solanaPhasesTitle: "Peta Jalan 5 Fase (Diselaraskan Cyfrin Updraft & Standar Audit 2026)",
     solanaPhase1Title: "Phase 1: Rust Programming Fundamentals (24 Modul)",
     solanaPrereqTitle: "3 Materi Prasyarat Kritis Sebelum Phase 2",
     awsTitle: "Red Teaming / Certified AWS Red Team Specialist",
@@ -98,9 +101,12 @@ export const LEARN_COPY = {
     cptsSyncNotice:
       "Overall progress is 50%. Granular local notes have not been restored since the SSD failure, so core track domains are listed without fabricated sub-module numbers.",
     solanaTitle: "Solana Smart Contract Security Audit",
-    solanaBadge: "Active: Phase 1 (5 Done, 3 In Progress)",
+    solanaBadge: "Primary Focus: Phase 1 (5 Done, 3 In Progress)",
     solanaRepoCta: "Open Rust-Smart-Contract-Security-Audit repo",
-    solanaPhasesTitle: "5-Phase Roadmap",
+    solanaUpdraftCta: "Cyfrin Updraft Solana Course",
+    solanaFastTrack:
+      "Auditor Fast-Track: wrap up 06-08 and critical modules 14-18 & 22 (+ 3 Web3 prerequisites), then jump straight into Phase 2 (Native, Anchor, Pinocchio & Cyfrin Updraft Solana Course) with LiteSVM, Mollusk, Token-2022, and Trident.",
+    solanaPhasesTitle: "5-Phase Roadmap (Aligned with Cyfrin Updraft & Modern Solana Audits)",
     solanaPhase1Title: "Phase 1: Rust Programming Fundamentals (24 Modules)",
     solanaPrereqTitle: "3 Critical Web3 Prerequisites Before Phase 2",
     awsTitle: "Red Teaming / Certified AWS Red Team Specialist",
@@ -126,10 +132,10 @@ export const TRACK_OVERVIEW = [
     shortMetric: { id: "5/24 (+3 aktif)", en: "5/24 (+3 active)" },
     pct: 21,
     status: "in_progress",
-    updated: { id: "Diperbarui 2026-11-26", en: "Updated 2026-11-26" },
+    updated: { id: "Fokus utama · 2026-11-26", en: "Primary focus · 2026-11-26" },
     summary: {
-      id: "Fokus aktif pada fondasi Rust (Rust By Example) dengan catatan kerentanan auditor Web3.",
-      en: "Active focus on Rust fundamentals (Rust By Example) mapped to Web3 security audit pitfalls.",
+      id: "Jalur prioritas utama: Rust Fundamentals, Native/Anchor/Pinocchio, LiteSVM, Token-2022, AMM/Oracle, dan Trident fuzzing.",
+      en: "Primary track: Rust fundamentals, Native/Anchor/Pinocchio, LiteSVM, Token-2022, AMM/Oracle, and Trident fuzzing.",
     },
   },
   {
@@ -140,10 +146,10 @@ export const TRACK_OVERVIEW = [
     shortMetric: { id: "50%", en: "50%" },
     pct: 50,
     status: "in_progress",
-    updated: { id: "Jalur aktif", en: "Active track" },
+    updated: { id: "Sekunder (tunggu biaya ujian)", en: "Secondary (exam budget queued)" },
     summary: {
-      id: "Jalur penetration testing ofensif (web, jaringan, Active Directory, dan pelaporan).",
-      en: "Offensive penetration testing path covering web, network, Active Directory, and reporting.",
+      id: "Progres 50% (web, jaringan, Active Directory); dilanjutkan penuh setelah prioritas Solana Audit dan anggaran ujian siap.",
+      en: "At 50% (web, network, Active Directory); full push resumes after Solana Audit milestone and exam voucher readiness.",
     },
   },
   {
@@ -156,8 +162,8 @@ export const TRACK_OVERVIEW = [
     status: "planned",
     updated: { id: "Akan dilanjutkan", en: "Queued next" },
     summary: {
-      id: "Jalur cloud red teaming AWS yang akan dilanjutkan setelah milestone CPTS dan Phase 1 Rust.",
-      en: "AWS cloud red teaming track queued to continue after current CPTS and Rust milestones.",
+      id: "Jalur cloud red teaming AWS yang akan dilanjutkan setelah milestone Solana Audit dan CPTS.",
+      en: "AWS cloud red teaming track queued after Solana Audit and CPTS milestones.",
     },
   },
 ];
@@ -396,10 +402,10 @@ export const RUST_MODULES = [
 
 export const WEB3_PREREQUISITES = [
   {
-    title: "Borsh & Binary Serialization / Deserialization",
+    title: "Borsh & Zero-Copy (bytemuck) Serialization",
     detail: {
-      id: "Konversi array byte mentah akun Solana (&mut [u8]) ke struct Rust secara deterministik; deteksi data incomplete deserialization dan length mismatch.",
-      en: "Deterministic serialization of raw Solana account byte arrays (&mut [u8]) into structs; detecting incomplete deserialization and length mismatches.",
+      id: "Konversi array byte mentah akun Solana (&mut [u8]) ke struct Rust secara deterministik; audit alignment #[repr(C)], incomplete deserialization, dan length mismatch pada Anchor zero_copy maupun Pinocchio.",
+      en: "Deterministic serialization of raw Solana account byte arrays (&mut [u8]); auditing #[repr(C)] alignment, incomplete deserialization, and byte-length mismatches in Anchor zero_copy and Pinocchio.",
     },
   },
   {
@@ -421,63 +427,65 @@ export const WEB3_PREREQUISITES = [
 export const SOLANA_ROADMAP_PHASES = [
   {
     phase: "Phase 1",
-    title: "Rust Programming Fundamentals",
+    title: "Rust Programming Fundamentals (Fast-Track Auditor)",
     status: "in_progress",
     progressLabel: "5 Done, 3 In Progress / 24 Modules",
     items: [
       "01-05: Hello World, Primitives, Custom Types, Variable Bindings, Types (DONE)",
       "06-08: Conversion, Expressions, Flow of Control (IN PROGRESS)",
-      "09-24: Functions, Generics, Scoping Rules, Traits, Macros, Error Handling, Unsafe (TODO)",
+      "Fast-Track Priority Next: 14-Generics, 15-Scoping Rules, 16-Traits, 17-Macros, 18-Error Handling, 22-Unsafe Operations",
+      "General Reference (on-demand): 09-13, 19, 20-Std-Misc (non-SBF), 21, 23, 24",
     ],
   },
   {
     phase: "Phase 2",
-    title: "Solana Smart Contract Development",
+    title: "Solana Development: Native Rust, Anchor & Pinocchio",
     status: "todo",
-    progressLabel: "Queued",
+    progressLabel: "Queued (Cyfrin Updraft Dual-Track)",
     items: [
       "Solana Core Primitives: Stateless programs, AccountInfo, rent exemption, compute budget (CU)",
-      "Program Derived Addresses (PDA): Deterministic derivation, seeds, canonical bumps",
-      "Cross-Program Invocation (CPI): Invoking external programs, signed CPI via PDA",
-      "The Anchor Framework: #[program], #[derive(Accounts)], constraints (has_one, signer, mut)",
-      "Hands-on: Simple Vault & Escrow, Staking Pool, SPL-Token Mint & Transfer Controller",
+      "PDA & CPI: Deterministic derivation, canonical bumps, signed Cross-Program Invocations",
+      "The Anchor Framework: #[program], #[derive(Accounts)], constraints (has_one, signer, mut), IDL",
+      "Pinocchio & Zero-Copy (bytemuck): Macro-free low-CU programs requiring manual account and byte-bounds validation",
+      "SPL Token & Token-2022 Extensions: Transfer fees, transfer hooks, mint/freeze/permanent delegate",
+      "Hands-on DeFi Builds (Cyfrin/solana-course): Vault & Escrow, Staking Pool, Oracle Validator, AMM, Dutch Auction",
     ],
   },
   {
     phase: "Phase 3",
-    title: "Smart Contract Vulnerabilities Lab",
+    title: "Solana & DeFi Vulnerabilities Lab",
     status: "todo",
     progressLabel: "Queued",
     items: [
-      "Missing Signer / Owner Check",
-      "Account Aliasing (Duplicate Mutable Accounts)",
-      "Type Cosplay (Discriminator Confusion)",
-      "Arbitrary CPI (program_id injection)",
-      "Precision Loss & Rounding Bugs",
-      "Bump Seed Collision & Closing Account Revival",
+      "Missing Signer / Owner Check & Unvalidated PDA Spoofing",
+      "Account Aliasing (Duplicate Mutable Accounts) & Closing Account Revival",
+      "Type Cosplay (8-byte Discriminator Confusion) & Arbitrary CPI Injection",
+      "Token-2022 Pitfalls: Transfer-fee balance mismatch & Transfer-hook CPI side effects",
+      "DeFi Economic & Accounting Bugs: Stale/spot Oracle manipulation, Vault share inflation, Precision Loss & Rounding",
+      "Pinocchio / Zero-Copy Audits: Manual slice indexing, #[repr(C)] padding, and unchecked raw deserialization",
     ],
   },
   {
     phase: "Phase 4",
-    title: "Audit Tooling & Fuzzing",
+    title: "Modern SVM Testing, Tooling & Fuzzing",
     status: "todo",
     progressLabel: "Queued",
     items: [
-      "Static Analysis: clippy, cargo-audit, cargo-geiger, soteria",
-      "Property-Based Testing: proptest, quickcheck",
-      "Advanced Fuzzing: Trident Fuzzing Framework for Anchor",
-      "Standalone Exploit Proof-of-Concept (PoC) tests",
+      "Fast SVM Harnesses: LiteSVM (Cyfrin Updraft stack) & Mollusk (Anza) for deterministic unit tests and exploit PoCs",
+      "Static Analysis & Hygiene: clippy, cargo-audit, cargo-geiger",
+      "Property-Based Testing: proptest & quickcheck",
+      "Stateful Invariant Fuzzing: Trident Fuzzing Framework (Ackee Blockchain)",
     ],
   },
   {
     phase: "Phase 5",
-    title: "Competitive Auditing & Bug Bounties",
+    title: "Competitive Auditing, Post-Mortems & Bug Bounties",
     status: "todo",
     progressLabel: "Queued",
     items: [
-      "CTF Challenges: Neodyme Solana CTF, OtterSec CTF",
-      "Post-Mortem Reconstruction: Wormhole, Cashio, Crema Finance",
-      "Bug Bounty Platforms: Immunefi, Cantina, Code4rena",
+      "Guided Security Labs: Cyfrin Updraft Solana Course, Coral Sealevel Attacks, Neodyme & OtterSec CTFs",
+      "Post-Mortem & Report Study: Wormhole, Cashio, Crema Finance, plus public audit reports (OtterSec, Neodyme, Zellic, Cantina)",
+      "Bug Bounty & Audit Contests: Immunefi, Cantina, Code4rena, Sherlock",
     ],
   },
 ];
