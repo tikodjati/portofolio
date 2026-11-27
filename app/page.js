@@ -1,251 +1,329 @@
+"use client";
 import { Fragment } from "react";
-import Section from "../components/Section";
-import Typing from "../components/Typing";
-import Avatar from "../components/Avatar";
+import Link from "next/link";
+import {
+  CERTS,
+  CONTACT,
+  EDUCATION,
+  EXP,
+  ME,
+  PROJECTS,
+  SKILLS,
+  TOOL_STRIP,
+  UI_COPY,
+} from "../data/content";
+import { LEARN_COPY, TRACK_OVERVIEW } from "../data/learn";
+import { useSite } from "../components/SiteProvider";
 import Status from "../components/Status";
-import Counter from "../components/Counter";
 import Terminal from "../components/Terminal";
-import Scramble from "../components/Scramble";
-import { ME, PROFILE, STATS, SKILLS, CERTS, PROJECTS, WRITEUPS, EXP, CONTACT } from "../data/content";
 
-const NAV = ["whoami", "skills", "certs", "projects", "writeups", "experience", "terminal", "contact"];
-
-export default function Home() {
-  const term = {
-    name: ME.name,
-    bio: ME.bio,
-    skills: SKILLS.flatMap((g) => (g.items ? g.items.map((i) => i.n) : g.tags)),
-    certs: CERTS.map((c) => `${c.name} [ID: ${c.credentialId || '-'}] (${c.org}, ${c.year})`),
-    projects: PROJECTS.map((p) => `${p.file}: ${p.name}`),
-    writeups: WRITEUPS.map((w) => `${w.title} [${w.cat}]`),
-    contact: CONTACT,
-  };
+export default function HomePage() {
+  const { lang } = useSite();
+  const t = UI_COPY[lang];
+  const lt = LEARN_COPY[lang];
 
   return (
-    <>
-      <nav>
-        <div className="nav-brand">
-          <span className="nav-prompt">root@backtrack:~#</span>
-          <b>~/{ME.name.toLowerCase().replace(/\s+/g, "-")}</b>
-        </div>
-        <div className="nav-links">
-          {NAV.map((s) => (
-            <a key={s} href={"#" + s}>
-              <span className="bracket">[</span>{s}<span className="bracket">]</span>
-            </a>
-          ))}
-        </div>
-        <div className="nav-meta">
-          <span className="nav-badge">BT5-R3 // SEC</span>
-        </div>
-      </nav>
+    <main id="main-content" tabIndex={-1}>
+      <section className="hero-section">
+        <div className="container">
+          <div className="hero-grid">
+            <div className="hero-main">
+              <Status location={ME.location} label={t.hero.statusLabel} />
+              <h1 className="hero-title">{ME.name}.</h1>
+              <p className="hero-role">{ME.roleLine[lang]}</p>
+              <p className="hero-bio">{ME.bio[lang]}</p>
 
-      <main>
-        <section className="hero">
-          <div className="hero-row">
-            <div className="hero-text">
-              <Status location={ME.location} />
-              <h1 className="glitch" data-text={ME.name}>
-                <Scramble text={ME.name} />
-              </h1>
-              <div className="hero-role-line">
-                <span className="role-prefix">&gt;</span>
-                <Typing words={ME.roles} />
+              <div className="hero-actions">
+                <Link href="/learn" className="btn-primary">
+                  {t.hero.ctaLearn}
+                </Link>
+                <a href="#projects" className="btn-secondary">
+                  {t.hero.ctaProjects}
+                </a>
+                <a href="#terminal" className="btn-secondary">
+                  {t.hero.ctaTerminal}
+                </a>
               </div>
-              <p className="lead">{ME.bio}</p>
-              <div className="btns">
-                <a className="btn btn-primary" href="#projects">
-                  <span className="btn-icon">&gt;</span> Lihat project
-                </a>
-                <a className="btn btn-alt" href="#terminal">
-                  <span className="btn-icon">$</span> Coba terminal
-                </a>
+
+              <div className="hero-social-row" aria-label={t.contact.linksLabel}>
+                {CONTACT.map((c) => (
+                  <a
+                    key={c.n}
+                    href={c.u}
+                    target={c.u.startsWith("http") ? "_blank" : undefined}
+                    rel={c.u.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="editorial-link"
+                  >
+                    {c.n}
+                  </a>
+                ))}
               </div>
             </div>
-            <Avatar name={ME.name} />
-          </div>
-        </section>
 
-        <Section id="whoami" cmd="cat whoami.txt">
-          <div className="kv-card">
-            <dl className="kv">
-              {PROFILE.map(([k, v]) => (
-                <div className="kv-row" key={k}>
-                  <dt><span className="dt-bullet">&gt;</span> {k}</dt>
-                  <dd>{v}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <div className="stats">
-            {STATS.map((s, idx) => (
-              <div className="stat" key={s.l}>
-                <div className="stat-header">
-                  <span className="stat-index">0{idx + 1}</span>
-                  <span className="stat-dot" />
-                </div>
-                <b><Counter to={s.v} />{s.plus ? "+" : ""}</b>
-                <span>{s.l}</span>
+            <figure className="hero-portrait-frame">
+              <div className="hero-portrait-img-wrap">
+                <img
+                  src="/foto.jpg"
+                  alt={t.hero.avatarAlt}
+                  width="400"
+                  height="400"
+                  fetchPriority="high"
+                  className="hero-portrait-img"
+                />
               </div>
+              <figcaption className="hero-portrait-caption">
+                <span>{t.hero.avatarCaption}</span>
+                <span>@tikodjati</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div className="tool-strip" aria-label={t.toolsLabel}>
+        <div className="container">
+          <div className="tool-strip-inner">
+            <span className="tool-strip-label">{t.toolsLabel}:</span>
+            {TOOL_STRIP.map((tool, idx) => (
+              <Fragment key={tool}>
+                <span className="tool-item">{tool}</span>
+                {idx < TOOL_STRIP.length - 1 && (
+                  <span className="tool-sep" aria-hidden="true">
+                    /
+                  </span>
+                )}
+              </Fragment>
             ))}
           </div>
-        </Section>
+        </div>
+      </div>
 
-        <Section id="skills" cmd="./skills --verbose">
-          <div className="skills-container">
-            {SKILLS.map((g) => (
-              <div className="skill-card" key={g.level}>
-                <div className="skill-head">
-                  <span className="skill-tier-badge">{g.level}</span>
-                </div>
-                {g.items && (
-                  <div className="skill-bars">
-                    {g.items.map((i) => (
-                      <div className="bar" key={i.n}>
-                        <span className="bar-label">{i.n}</span>
-                        <div className="bar-track">
-                          <i style={{ "--v": i.v + "%" }} />
-                        </div>
-                        <b className="bar-val">{i.v}%</b>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {g.tags && (
-                  <div className="tags skill-tags">
-                    {g.tags.map((t) => (
-                      <span className="tag" key={t}>{t}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
+      <section id="about" className="band-plain">
+        <div className="container-narrow">
+          <p className="section-eyebrow">{t.about.eyebrow}</p>
+          <div className="narrative-stack">
+            <h2 className="narrative-heading">{t.about.heading}</h2>
+            {t.about.paragraphs.map((p, idx) => (
+              <p key={idx} className="narrative-p">
+                {p}
+              </p>
             ))}
           </div>
-        </Section>
+        </div>
+      </section>
 
-        <Section id="certs" cmd="ls ~/certs/">
-          <div className="grid">
-            {CERTS.map((c) => (
-              <div className="card cert-card" key={c.name}>
-                <div className="card-topline">
-                  <span className="cert-pill">VERIFIED CREDENTIAL</span>
-                  <span className="card-sub">{c.year}</span>
-                </div>
-                <h3>{c.name}</h3>
-                <div className="meta cert-org">
-                  <span className="org-label">ISSUER:</span> {c.org}
-                </div>
-                {c.credentialId && (
-                  <div className="cert-id-badge">
-                    <span className="cert-id-label">CREDENTIAL ID:</span>
-                    <code className="cert-id-code">{c.credentialId}</code>
-                  </div>
-                )}
+      <section id="credentials" className="band-subtle">
+        <div className="container">
+          <div className="edu-cert-grid">
+            <div>
+              <h2 className="meta-heading">{t.about.educationLabel}</h2>
+              <div className="edu-card">
+                <p className="edu-inst">{EDUCATION.institution}</p>
+                <p className="edu-degree">{EDUCATION.degree[lang]}</p>
+                <p className="edu-meta">
+                  {EDUCATION.period} · {EDUCATION.location}
+                </p>
+                <p className="edu-meta">{EDUCATION.focus[lang]}</p>
               </div>
+
+              <div className="skills-compact-groups">
+                {SKILLS.map((group) => (
+                  <div key={group.level.en}>
+                    <p className="skill-group-title">{group.level[lang]}</p>
+                    <div className="tag-list">
+                      {group.tags.map((tag) => (
+                        <span key={tag} className="tag-chip">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h2 className="meta-heading">{t.about.certsLabel}</h2>
+              <ul className="cert-list">
+                {CERTS.map((c) => (
+                  <li key={c.credentialId} className="cert-item">
+                    <p className="cert-name">{c.name}</p>
+                    <p className="cert-meta">
+                      {c.org} · {c.year}
+                    </p>
+                    <p className="cert-id">
+                      {t.about.credentialIdLabel}: {c.credentialId}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="learn-snapshot" className="band-plain">
+        <div className="container">
+          <div className="learn-preview-header">
+            <div>
+              <p className="section-eyebrow">{t.learnPreview.eyebrow}</p>
+              <h2 className="section-heading">{t.learnPreview.heading}</h2>
+              <p className="section-lead">{t.learnPreview.subtitle}</p>
+            </div>
+            <Link href="/learn" className="btn-primary">
+              {t.learnPreview.cta}
+            </Link>
+          </div>
+
+          <div className="learn-track-rows">
+            {TRACK_OVERVIEW.map((tr) => (
+              <Link key={tr.id} href={`/learn${tr.anchor}`} className="learn-track-row">
+                <div>
+                  <div className="track-row-title">{tr.name}</div>
+                  <div className="track-row-updated">
+                    {t.learnPreview.updatedLabel}: {tr.updated}
+                  </div>
+                </div>
+                <p className="track-row-summary">{tr.summary[lang]}</p>
+                <div>
+                  <span
+                    className={`status-pill ${
+                      tr.status === "in_progress" ? "is-active" : ""
+                    }`}
+                  >
+                    {tr.metric} · {lt.statusLabels[tr.status]}
+                  </span>
+                </div>
+              </Link>
             ))}
           </div>
-        </Section>
+        </div>
+      </section>
 
-        <Section id="projects" cmd="ls -la ~/projects/">
-          <div className="grid">
+      <section id="projects" className="band-subtle">
+        <div className="container">
+          <p className="section-eyebrow">{t.projects.eyebrow}</p>
+          <h2 className="section-heading">{t.projects.heading}</h2>
+          <p className="section-lead">{t.projects.subtitle}</p>
+
+          <div className="projects-grid">
             {PROJECTS.map((p) => (
-              <div className="card project-card" key={p.file}>
-                <div className="card-topline">
-                  <div className="file-chip">
-                    <span className="file-dot" />
-                    <span className="file-name">{p.file}</span>
-                  </div>
-                  <span className="card-status-badge">TOOL</span>
+              <article key={p.file} className="project-card">
+                <div className="project-card-top">
+                  <span className="project-file">{p.file}</span>
+                  <span className="project-cat">{p.category}</span>
                 </div>
-                <h3>{p.name}</h3>
-                <p>{p.desc}</p>
-                <div className="tags project-tags">
-                  {p.tech.map((t) => (
-                    <span className="tag" key={t}>{t}</span>
+                <h3 className="project-title">{p.name}</h3>
+                <p className="project-desc">{p.desc[lang]}</p>
+                <div className="tag-list" style={{ marginBottom: "16px" }}>
+                  {p.tech.map((tech) => (
+                    <span key={tech} className="tag-chip">
+                      {tech}
+                    </span>
                   ))}
                 </div>
-                <div className="card-action">
-                  <a className="project-link-btn" href={p.link} target="_blank" rel="noopener noreferrer">
-                    <span>Lihat detail</span>
-                    <span className="arrow-sym">&rarr;</span>
+                <div className="project-footer">
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                  >
+                    <span>{t.projects.inspect}</span>
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      aria-hidden="true"
+                    >
+                      <path d="M7 17 17 7M9 7h8v8" />
+                    </svg>
                   </a>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
-        </Section>
+        </div>
+      </section>
 
-        {/* <Section id="writeups" cmd="ls ~/writeups/">
-          <div className="grid">
-            {WRITEUPS.map((w) => (
-              <div className="card" key={w.title}>
-                <h3>{w.title}</h3>
-                <div className="meta">{w.ev} | {w.cat} | {w.date}</div>
-                <p><a href={w.link}>Baca writeup</a></p>
-              </div>
-            ))}
-          </div>
-        </Section> */}
+      <section id="experience" className="band-plain">
+        <div className="container">
+          <p className="section-eyebrow">{t.experience.eyebrow}</p>
+          <h2 className="section-heading">{t.experience.heading}</h2>
+          <p className="section-lead">{t.experience.subtitle}</p>
 
-        <Section id="experience" cmd="ls -l /experience/">
-          <div className="tl">
+          <div className="work-list">
             {EXP.map((e) => (
-              <div key={e.role} className={`tl-item ${e.now ? "now" : ""}`}>
-                <div className="tl-card">
-                  <div className="tl-header">
-                    {e.now && <span className="badge">OPERASI AKTIF SAAT INI</span>}
-                    <h3>{e.role}</h3>
-                    <div className="meta">{e.org} &bull; {e.time}</div>
+              <article key={`${e.role}-${e.org}`} className="work-row">
+                <div className="work-date">{e.time}</div>
+                <div>
+                  <div className="work-role-header">
+                    <h3 className="work-role">{e.role}</h3>
+                    {e.now && (
+                      <span className="status-pill is-active">{t.experience.currentBadge}</span>
+                    )}
                   </div>
-                  <ul>
-                    {e.pts.map((p) => (
-                      <li key={p}>
-                        <span className="li-arrow">&rarr;</span>
-                        <span>{p}</span>
-                      </li>
+                  <p className="work-org">{e.org}</p>
+                  <ul className="work-bullets">
+                    {e.pts[lang].map((pt, idx) => (
+                      <li key={idx}>{pt}</li>
                     ))}
                   </ul>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
-        </Section>
+        </div>
+      </section>
 
-        <Section id="terminal" cmd="./terminal --interactive">
-          <p className="lead" style={{ marginTop: 0 }}>
-            Ketik <b>help</b> untuk melihat perintah yang tersedia. Temukan petunjuk tersembunyi di dalam sistem.
-          </p>
-          <Terminal d={term} />
-        </Section>
+      <section id="terminal" className="band-subtle">
+        <div className="container">
+          <p className="section-eyebrow">{t.terminal.eyebrow}</p>
+          <h2 className="section-heading">{t.terminal.heading}</h2>
+          <p className="section-lead">{t.terminal.subtitle}</p>
+          <Terminal />
+        </div>
+      </section>
 
-        <Section id="contact" cmd="./contact_me.sh">
-          <div className="contact-wrapper">
-            <div className="btns contact-btns">
-              {CONTACT.map((c) => (
-                <a className="btn contact-btn" key={c.n} href={c.u} target="_blank" rel="noopener noreferrer">
-                  <span className="btn-bracket">[</span> {c.n} <span className="btn-bracket">]</span>
+      <section id="contact" className="band-plain">
+        <div className="container">
+          <div className="contact-layout">
+            <p className="section-eyebrow">{t.contact.eyebrow}</p>
+            <h2 className="section-heading">{t.contact.heading}</h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "16px" }}>
+              {t.contact.paragraphs.map((p, idx) => (
+                <p key={idx} className="section-lead">
+                  {p}
+                </p>
+              ))}
+            </div>
+
+            <div className="contact-email-wrap">
+              <p className="contact-field-label">{t.contact.emailLabel}</p>
+              <a href={`mailto:${ME.email}`} className="contact-email">
+                {ME.email}
+              </a>
+            </div>
+
+            <div className="contact-links">
+              {CONTACT.filter((c) => c.n !== "Email").map((c) => (
+                <a
+                  key={c.n}
+                  href={c.u}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="editorial-link"
+                >
+                  {c.n}
                 </a>
               ))}
             </div>
-            <div className="terminal-echo">
-              <span className="ps">root@backtrack:~#</span> echo &quot;Tetap penasaran. Bongkar hanya dengan izin.&quot;
-            </div>
-          </div>
-        </Section>
-      </main>
-
-      <footer>
-        <div className="footer-wrap">
-          <div className="footer-meta">
-            © 2026 {ME.name} &bull; BackTrack Security Portfolio // Built with Next.js
-          </div>
-          <div className="footer-tags">
-            <span className="ft-badge">DISTRO: BACKTRACK 5.3</span>
-            <span className="ft-badge">ARCH: x86_64</span>
-            <span className="ft-badge">STATUS: STEALTH</span>
           </div>
         </div>
-      </footer>
-    </>
+      </section>
+    </main>
   );
 }

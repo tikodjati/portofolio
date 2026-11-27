@@ -1,33 +1,31 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export default function Status({ location }) {
-  const [t, setT] = useState("--:--:--");
+export default function Status({ location, label }) {
+  const [timeStr, setTimeStr] = useState("--:--:--");
+
   useEffect(() => {
-    const f = () =>
-      setT(
+    const updateClock = () =>
+      setTimeStr(
         new Date()
           .toLocaleTimeString("id-ID", { hour12: false, timeZone: "Asia/Jakarta" })
           .replace(/\./g, ":")
       );
-    f();
-    const id = setInterval(f, 1000);
+    updateClock();
+    const id = setInterval(updateClock, 1000);
     return () => clearInterval(id);
   }, []);
 
   return (
-    <div className="status">
-      <span className="status-pill status-live">
-        <i className="dot" />
-        <span>SYSTEM ONLINE</span>
+    <div className="hero-status-line">
+      <span className="status-indicator">
+        <span className="status-dot" aria-hidden="true" />
+        <span>{label}</span>
       </span>
-      <span className="status-pill status-loc">
-        <span className="status-dim">LOC:</span> {location}
-      </span>
-      <span className="status-pill status-time">
-        <span className="status-dim">TIME:</span> {t} WIB
-      </span>
+      <span aria-hidden="true">/</span>
+      <span>{location}</span>
+      <span aria-hidden="true">/</span>
+      <span>{timeStr} WIB</span>
     </div>
   );
 }
-

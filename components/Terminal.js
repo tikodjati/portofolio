@@ -1,127 +1,166 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { CERTS, CONTACT, ME, PROJECTS, SKILLS, UI_COPY } from "../data/content";
+import { TRACK_OVERVIEW } from "../data/learn";
+import { useSite } from "./SiteProvider";
 
-const PS = "root@backtrack:~#";
+const PS = "kartiko@portofolio:~$";
 
-export default function Terminal({ d }) {
-  const [log, setLog] = useState([
-    { c: "", o: "BackTrack Linux 5 R3 - Terminal Shell v3.2.6\nKetik 'help' untuk melihat daftar perintah sistem." },
-  ]);
-  const [v, setV] = useState("");
-  const box = useRef(null);
-  const inp = useRef(null);
+export default function Terminal() {
+  const { lang } = useSite();
+  const t = UI_COPY[lang];
+
+  const [log, setLog] = useState([{ cmd: "", out: t.terminal.welcome }]);
+  const [inputVal, setInputVal] = useState("");
+  const boxRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
-    if (log.length > 1 && box.current) box.current.scrollTop = box.current.scrollHeight;
+    setLog([{ cmd: "", out: UI_COPY[lang].terminal.welcome }]);
+  }, [lang]);
+
+  useEffect(() => {
+    if (log.length > 1 && boxRef.current) {
+      boxRef.current.scrollTop = boxRef.current.scrollHeight;
+    }
   }, [log]);
 
-  const run = (raw) => {
-    const cmd = raw.trim();
-    if (!cmd) return;
-    const [c, ...a] = cmd.split(/\s+/);
-    const list = (arr) => arr.map((x) => "  [+] " + x).join("\n");
-    let o;
-    switch (c.toLowerCase()) {
+  const execute = (raw) => {
+    const trimmed = raw.trim();
+    if (!trimmed) return;
+    const [cmd, ...args] = trimmed.split(/\s+/);
+    const list = (arr) => arr.map((x) => `  - ${x}`).join("\n");
+    let out = "";
+
+    switch (cmd.toLowerCase()) {
       case "help":
-        o = [
-          "PERINTAH SISTEM BACKTRACK:",
-          "  whoami      Informasi identitas operator",
-          "  skills      Keahlian teknis & pengujian penetrasi",
-          "  certs       Daftar sertifikasi keamanan siber",
-          "  projects    Repositori tools & riset exploit",
-          "  writeups    Catatan analisis keamanan & CTF",
-          "  contact     Saluran komunikasi terbuka",
-          "  ls          Tampilkan daftar file direktori saat ini",
-          "  cat <file>  Baca isi file (contoh: cat whoami.txt)",
-          "  clear       Bersihkan buffer terminal",
+        out = [
+          "COMMANDS:",
+          "  whoami      Operator summary",
+          "  learn       /learn progress (Solana, CPTS, AWS Red Team)",
+          "  skills      Technical focus areas",
+          "  certs       Verified certifications",
+          "  projects    Public security repositories",
+          "  contact     Open contact channels",
+          "  ls          List virtual notebook files",
+          "  cat <file>  Read file (whoami.txt, .secret)",
+          "  clear       Reset output buffer",
         ].join("\n");
         break;
       case "whoami":
-        o = `[IDENTITAS OPERATOR]\nNama : ${d.name}\nBio  : ${d.bio}`;
+        out = `${ME.name} (${ME.location})\n${ME.bio[lang]}`;
+        break;
+      case "learn":
+        out = TRACK_OVERVIEW.map(
+          (tr) => `  [${tr.metric}] ${tr.name} (${tr.updated})`
+        ).join("\n");
         break;
       case "skills":
-        o = list(d.skills);
+        out = list(SKILLS.flatMap((g) => g.tags));
         break;
       case "certs":
-        o = list(d.certs);
+        out = list(
+          CERTS.map((c) => `${c.name} [ID: ${c.credentialId}] (${c.org}, ${c.year})`)
+        );
         break;
       case "projects":
-        o = list(d.projects);
-        break;
-      case "writeups":
-        o = d.writeups.length ? list(d.writeups) : "  [-] Tidak ada writeup di direktori ini.";
+        out = list(PROJECTS.map((p) => `${p.file}: ${p.name}`));
         break;
       case "contact":
-        o = d.contact.map((x) => `  [>] ${x.n.padEnd(12)}: ${x.u}`).join("\n");
+        out = CONTACT.map((c) => `  ${c.n.padEnd(10)}: ${c.u}`).join("\n");
         break;
       case "ls":
-        o = "-rw-r--r--  1 root root  whoami.txt\ndrwxr-xr-x  2 root root  skills/\ndrwxr-xr-x  2 root root  certs/\ndrwxr-xr-x  2 root root  projects/\ndrwxr-xr-x  2 root root  writeups/\n-rw-------  1 root root  .secret";
+        out = "whoami.txt   learn/   skills/   certs/   projects/   .secret";
         break;
       case "cat":
-        o =
-          a[0] === ".secret"
-            ? "[ENCRYPTED PAYLOAD] Coba ketik: flag"
-            : a[0] === "whoami.txt"
-            ? `${d.name}\n${d.bio}`
-            : `cat: ${a[0] || "?"}: file tidak ditemukan atau gunakan perintah di 'help'`;
+        if (args[0] === ".secret") {
+          out = "[PAYLOAD] Try command: flag";
+        } else if (args[0] === "whoami.txt") {
+          out = `${ME.name}\n${ME.bio[lang]}`;
+        } else {
+          out = `cat: ${args[0] || "<missing>"}: file not found (try 'whoami.txt' or '.secret')`;
+        }
         break;
       case "flag":
-        o = "FLAG{b4cktr4ck_l1nux_st34lth_0p3r4t0r}\n[+] Selamat! Kamu berhasil menemukan easter egg ini.\n[+] Tangkap layar (screenshot) ini dan bagikan ke Kartiko!";
-        break;
-      case "sudo":
-        o = `root shell sudah aktif di host backtrack. Kamu sudah memiliki izin tertinggi pada sistem ${d.name}.`;
+        out = "FLAG{m0n0chr0m3_n0t3b00k_s3cur1ty_r3s34rch}";
         break;
       case "clear":
         setLog([]);
         return;
       default:
-        o = `bash: ${c}: command not found. Ketik 'help' untuk daftar perintah.`;
+        out = `sh: ${cmd}: command not found. Type 'help' for valid commands.`;
     }
-    setLog((l) => [...l, { c: cmd, o }]);
+
+    setLog((prev) => [...prev, { cmd: trimmed, out }]);
   };
 
   return (
-    <div className="term" onClick={() => inp.current && inp.current.focus()}>
-      <div className="term-bar">
-        <div className="term-dots">
-          <span className="tdot tdot-red" />
-          <span className="tdot tdot-gray" />
-          <span className="tdot tdot-white" />
+    <div className="shell-box">
+      <div className="shell-bar">
+        <span>tty1 // {PS}</span>
+        <div className="shell-quick-cmds" role="group" aria-label="Quick commands">
+          {["help", "learn", "certs", "projects", "clear"].map((preset) => (
+            <button
+              key={preset}
+              type="button"
+              className="shell-chip-btn"
+              onClick={() => execute(preset)}
+            >
+              {preset}
+            </button>
+          ))}
         </div>
-        <div className="term-title">bash - root@backtrack: ~ (80x24)</div>
-        <div className="term-meta">SHELL://TTY1</div>
       </div>
-      <div className="termbox" ref={box}>
-        {log.map((l, i) => (
-          <div key={i} className="term-line-block">
-            {l.c !== "" && (
-              <div className="term-cmd-row">
-                <span className="ps">{PS}</span> {l.c}
-              </div>
-            )}
-            <pre className="term-pre">{l.o}</pre>
-          </div>
-        ))}
+
+      <div
+        className="shell-output"
+        ref={boxRef}
+        onClick={() => inputRef.current?.focus()}
+        aria-live="polite"
+      >
+        {log.length === 0 ? (
+          <p className="shell-pre">Buffer cleared. Type &apos;help&apos; or select a command above.</p>
+        ) : (
+          log.map((entry, idx) => (
+            <div key={idx} className="shell-entry">
+              {entry.cmd !== "" && (
+                <div className="shell-cmd-line">
+                  {PS} {entry.cmd}
+                </div>
+              )}
+              <pre className="shell-pre">{entry.out}</pre>
+            </div>
+          ))
+        )}
       </div>
-      <div className="termin">
-        <span className="ps">{PS}</span>
+
+      <form
+        className="shell-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          execute(inputVal);
+          setInputVal("");
+        }}
+      >
+        <label htmlFor="portfolio-shell-input" className="shell-prompt">
+          {PS}
+        </label>
         <input
-          ref={inp}
-          value={v}
-          aria-label="Terminal interaktif"
+          id="portfolio-shell-input"
+          ref={inputRef}
+          type="text"
+          className="shell-input"
+          value={inputVal}
+          onChange={(e) => setInputVal(e.target.value)}
+          placeholder={t.terminal.placeholder}
           autoComplete="off"
           autoCapitalize="off"
           spellCheck={false}
-          onChange={(e) => setV(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              run(v);
-              setV("");
-            }
-          }}
         />
-      </div>
+        <button type="submit" className="btn-secondary">
+          {t.terminal.runLabel}
+        </button>
+      </form>
     </div>
   );
 }
-
